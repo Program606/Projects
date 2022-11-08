@@ -1,0 +1,139 @@
+
+# USERNAME1 Prince
+# USERNAME2 _________
+
+
+# knowns
+"""
+#Starting Location
+STATUE_LAT = 51.013760  
+STATUE_LONG = 114.133691
+
+#End Location
+MALL_LAT = 50.99854
+MALL_LONG = 114.07356
+
+#Haversine Formulae
+haversine_formula1
+EARTH_EQUITORIAL_RADIUS = 6378137
+EARTH_POLAR_RADIUS = 6356752
+
+
+
+# unknowns
+MALL_latitude/longitude in radians
+STATUE_latitude/longitude in radians
+"""
+# calculations (and sub calculations)
+
+
+
+# solution statement(s)
+
+import math
+
+#Asking user for input
+#Adding abs so that longitude is always positive
+#Location coordinates from Google Maps https://github.com/MRU-F22-CS1/instructions/blob/main/assign2/chinookMallGoogleMap.png
+MALL_LONG = (input("Input the Longitutde in Decimal Degrees "))
+MALL_LONG = (abs(float(MALL_LONG)))
+
+MALL_LAT = (input("Input the Latitude in Decimal Degrees "))
+MALL_LAT = ((float(MALL_LAT)))
+
+
+#Converting into Radians
+#Adding specification on how long the decimal place
+
+MALL_LONG = math.radians (MALL_LONG) 
+
+MALL_LAT = math.radians (MALL_LAT)
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
+
+#Using the Haversine Formulae
+#Formula inspired by https://github.com/MRU-F22-CS1/instructions/blob/main/assign2/readme.md#programming-requirements
+#Inclduing Starting location
+STATUE_LAT = math.radians(51.013760)
+STATUE_LONG = math.radians(114.133691)
+EARTH_EQUITORIAL_RADIUS = 6378137
+EARTH_POLAR_RADIUS = 6356752
+
+
+#R is the average weighted Earth's Radius formula
+#Formula inspired by https://github.com/MRU-F22-CS1/instructions/blob/main/assign2/readme.md#programming-requirements
+
+R = ((1/3)*(2*(EARTH_EQUITORIAL_RADIUS)+(EARTH_POLAR_RADIUS)))
+
+#First step of the Haversine Formula
+#Formula inspired by https://github.com/MRU-F22-CS1/instructions/blob/main/assign2/readme.md#programming-requirements
+# Breaking the equation into 4 parts, L, M, N, and O
+# a will be substituted for the answer in the first step of the Formula
+# a is using bedmas to use previous variables then write answer
+# How to use sin^2 in python inspired by https://www.reddit.com/r/learnpython/comments/lylteb/how_to_do_sin2x_in_python/
+total_lat = (((STATUE_LAT)-(MALL_LAT))/2)
+total_long = (((STATUE_LONG)-(MALL_LONG))/2)
+L = (math.sin(total_lat))**2
+M = ((math.cos(STATUE_LAT))*(math.cos(MALL_LAT)))
+N = (math.sin(total_long))**2
+O = (M*N)
+a = (L+O)
+
+#C is the second step of the Haversine Formula
+#Formula and atan2 inspired by https://github.com/MRU-F22-CS1/instructions/blob/main/assign2/readme.md#programming-requirements
+#The usage of the Square root is inspired by https://www.geeksforgeeks.org/python-math-function-sqrt/#:~:text=sqrt()%20function%20is%20an,number%20passed%20in%20the%20parameter.
+#In C, using the previous variable/equation "a" and plugging it into the equation
+
+C = 2*(math.atan2(math.sqrt(a),(math.sqrt(1-a))))
+distance_between = (R*C)
+#Turn the "distance between" from meters into kilometers
+M_TO_KM_CONVERSION = 1000
+d =(distance_between/(M_TO_KM_CONVERSION))
+
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+#For DMS get coordinates without radians, use math.degrees to convert
+#Converting Coordinates into Decimal Notation
+#The use of math.degrees is inspired by https://stackoverflow.com/questions/9875964/how-can-i-convert-radians-to-degrees-with-python (first answer)
+#Get the total of Coordinates then minus the remiander
+#Convert the radians into degrees
+statue_long_dms_d = (math.degrees(STATUE_LONG))-(math.degrees(STATUE_LONG)%2)
+#Get the total of the Coordinates minus the whole number, multiply by 60 and you get the m in DMS
+statue_long_dms_m =(((math.degrees(STATUE_LONG)-(statue_long_dms_d))*60))
+#Get the total of the Coordinates of statue_long_dms_m minus the whole number, multiply by 60 and you get the s in DMS
+statue_long_dms_s =(((statue_long_dms_m)-(int(statue_long_dms_m)))*60)
+
+statue_lat_dms_d = (math.degrees(STATUE_LAT)-(int(math.degrees(STATUE_LAT))))
+statue_lat_dms_d = (math.degrees(STATUE_LAT)-statue_lat_dms_d)
+
+statue_lat_dms_m = ((math.degrees(STATUE_LAT)-(statue_lat_dms_d))*60)
+
+statue_lat_dms_s = ((statue_lat_dms_m)*60)
+
+#-----------------------------------------------------------------------------------------------------------------------------------------------
+
+mall_long_dms_d = (math.degrees(MALL_LONG))
+mall_long_dms_m = (((mall_long_dms_d)-int(mall_long_dms_d))*60)
+mall_long_dms_s = (((mall_long_dms_m)-(int(mall_long_dms_m)))*60)
+
+mall_lat_dms_d = math.degrees(MALL_LAT)
+mall_lat_dms_m = (((mall_lat_dms_d)-(int(mall_lat_dms_d)))*60)
+mall_lat_dms_s = (((mall_lat_dms_m)-(int(mall_lat_dms_m)))*60)
+
+MALL_LAT = math.degrees(MALL_LAT)
+MALL_LONG =math.degrees(MALL_LONG)
+#Source for use of degree symbol https://theprogrammingexpert.com/python-degree-symbol/
+
+#For the printing portion. 
+
+#Round down for the coordinates, using int. If a number is able to round up, use round to bring it up.
+#Used Unicode to input the degree sign in the Coordinate input
+#For the coordinates needing a specific decinal place, used :.2f.
+
+print (f"Homage Statue Coordianates : ({int(statue_lat_dms_d)}\u00B0",f"{int(statue_lat_dms_m)}'",f'{statue_lat_dms_s:.2f}"  N'",",f"{round(statue_long_dms_d)}\u00B0",f"{round(statue_long_dms_m)}'",f'{statue_long_dms_s:.2f}"',"W)")
+print (f"User Input Coordinates     : ({int(mall_lat_dms_d)}\u00B0",f"{int(mall_lat_dms_m)}'", f'{mall_lat_dms_s:.2f}"', "N,", f"{int(mall_long_dms_d)}\u00B0", f"{int(mall_long_dms_m)}'",f"{mall_long_dms_s:.2f}","W)")
+print ("Homage Statue is located in 51.013760 and 114.133691")
+print ("The User Input is located in", (MALL_LAT),"and", (MALL_LONG))
+print ("The Distance Between the Homage Statue and User Input is ",f"{d:.1f}","kms")
