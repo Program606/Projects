@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang = "en">
+
+    <head>
+        <meta charset = "UTF-8">
+
+        <meta name = "author" content = "Kaydence Eng, Prince Manzano">
+        <meta name = "description" content = "Contact page for the CodeCloset">
+        <meta name = "keywords" content = "CodeClosest, codecloset, code closet, codecloset contact page, codecloset about us">
+
+        <link rel="stylesheet" href = "style/contactUs.css">
+        <link rel="stylesheet" href = "style/general.css">
+
+        <title>More about us! - The CodeCloset</title>
+    </head>
+
+    <body>
+        <main>
+        <header>
+        
+            <h1>Curious for more?</h1>
+            <h4>The CodeCloset</h4>
+            
+        </header>
+
+        <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="historyOfCode.html">History of Code</a></li>
+        </ul>
+        </nav>
+        
+        <section>
+        
+        <article>
+        <h2>About Us!</h2>
+         
+        <!--Note: The text for this page was written and created by us, not an AI.-->
+
+        <p>
+            
+            <img src = "images/authorKaydence.jpg" alt="Author: Kaydence Eng" title = "Kaydence Eng">
+            <!--Source: https://www.pinterest.ca/pin/333688653653712655/ -->
+            <img src = "images/authorPrince.jpg" alt="Author: Prince Manzano" title = "Prince Manzano">
+            <!--Source: https://www.vectorstock.com/royalty-free-vector/blank-profile-picture-image-holder-with-a-crown-vector-42411540 -->
+
+            The CodeCloset is the perfect guide for beginners looking to code. 
+            We provide guides to common coding languages, as well as, more detailed
+            support if you choose to contact us. Currently, the website is ran by the
+            two of us, Kaydence Eng and Prince Manzano. You can see our lovely faces to the 
+            right of the screen. You can hover the image to learn who's who (the crown should be a dead giveaway ;) ).
+            Our websites not only serves as a guide for our users, but as a journal for the two
+            of us as to share our coding journey. 
+
+        </p>
+       
+        <h2>Our Story</h2>
+
+        <p>  
+
+            We began this website when we first started learning how to code.
+            Many resources exist out there to guide beginners in their coding journey,
+            yet it was spread out everywhere. That's where we come in. We wanted to make one 
+            master site that anyone can refer to when they want to start coding. Helping 
+            others with their coding is key to our site's mission, however, we also want to
+            educate people on how code came to the place it's at today. Hence, we also 
+            share knowledge regarding the history of code. Our site also provides 
+            information surrounding the current atmopshere of the coding world such 
+            as which languages are the most popular. Also, we found that a brief overview of the world of coding was 
+            beneficial when we first started, so we offer the same when users first 
+            visit our site. There are always people who are eager to code, but aren't 
+            too sure what it might entail, so we also provide guidance in that regard.
+            The CodeCloset in your one stop place for all coding beginners out there!
+
+        </p>
+    
+        <p>
+            
+            Want to learn more? Or maybe join our team? Fill out the form below and
+            we'll get back to you! 
+
+        </p>
+
+        </article>
+
+        <article>
+            <form id="formOne" method="post" action="mailto:keng030@mtroyal.ca"> <!--CHECK WITH KAYDENCE-->
+            <h2>Contact Us!</h2>
+
+            <fieldset>
+                
+                <legend>Personal Information</legend>
+                    <dl>
+                        <dt><label>Name*</label></dt>
+                        <dd>
+                            <input name = "name" type = "text" size = "20" maxlength="150" placeholder="Last, First" required>
+                        </dd>
+
+                        <dt><label>Email*</label></dt>
+                        <dd> <!-- Resource of information: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/email-->
+                            <input name = "email" type="email" placeholder="name@mtroyal.ca" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+                        </dd>
+
+                        <dt><label>Phone Number</label></dt>
+                        <dd>
+                            <input name = "phone" type="tel" placeholder="991-998-9100" pattern = "[0-9]{3}[\-][0-9]{3}[\-][0-9]{4}">
+                        </dd>
+                        
+                    </dl>
+
+            </fieldset>
+
+            <fieldset>
+                <legend>Request Information</legend>
+                
+                    <dl>
+                        <dt><label>Reason for contacting us.*</label></dt>
+                        <dd> <!-- Use of information for input text: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input-->
+                            <input name = "contactReason" type = "text" placeholder = "Character limit is 250" maxlength="250" required>
+                        </dd>
+
+
+                        <dt><label>Comments*</label></dt>
+
+                        <dd>
+                            <textarea name = "comments" placeholder = "Any comments?" required></textarea>
+                        </dd>
+                    
+                    </dl>
+            </fieldset>
+            
+            <fieldset>
+                <legend>Extras</legend>
+                    <dl>
+
+                        <dt><label>Do you want to receive regular updates from us?</label></dt>
+                        <dd>
+                            
+                            <input name = "updateChecker" type="radio" id="button1" value="Yes">
+                            <label for="button1">Yes</label>
+
+                            <input name = "updateChecker" type="radio" id="button2" value="No">
+                            <label for="button2">No</label>
+                            
+                        </dd>
+
+                        <dt><label>Would you like us to contact you on a certain day?</label></dt>
+                        <dd>
+                            <input name = "contactDate" type = "date">
+                        </dd>
+
+                        <dt><label>Coding Experience</label></dt>
+                        <dd>
+                            
+                            <input type="checkbox" id="knowALanguage" name="checbox1" value="knowALanguage">
+                            <label for="knowALanguage">Do you know a Programming Language?</label>
+
+                            <input type="checkbox" id="majorConnected" value="yesMyMajorConnected" name="enrolledCoding">
+                            <label for="majorConnected">Are you currently enrolled in coding classes?</label>
+                            
+                        </dd>
+
+                    </dl>
+                    
+            </fieldset>
+
+                <input type = "reset">
+                <input type = "submit">
+            
+        </form>
+        </article>
+        </section>
+
+        <footer>
+            &copy; CODECLOSET, 2023
+        </footer>
+    
+    </main>
+
+    </body>
+
+</html>

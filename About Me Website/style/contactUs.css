@@ -1,0 +1,106 @@
+header{
+
+    background-color: #6B9080;
+    text-align: center;
+    padding: 50px;
+
+}
+
+nav{
+
+    text-align: center;
+    background-color: lightslategray;
+    padding: 20px;
+}
+
+li{ 
+    display:inline; /**/
+    /* float: center; Makes the block elemets float next to each other */
+}
+  
+ul{
+  
+    list-style-type: none;
+    /*margin: 0; */
+    padding: 0;
+    overflow: hidden;
+  
+}
+
+body{
+
+    background-color: #EAF4F4;
+
+}
+
+h1{
+
+    font-size:45px;
+
+}
+
+h2{
+
+    font-size: 35px;
+
+}
+
+a{
+
+    padding: 10px;
+
+}
+
+a:hover{
+
+    background-color: rgb(144, 149, 155);
+    
+  }
+
+article{
+
+    background-color:#CCE3DE;
+    box-sizing: border-box;
+    /*font-size: 20px;*/
+    /*margin-bottom: 10px;; */
+    padding: 0px 15px 15px 15px;
+
+}
+
+img{
+
+    float:right;
+    width: 150px;
+    height: 150px;
+    /*margin: 10px;*/
+
+}
+
+section{
+
+    background-color:#CCE3DE;
+   /* font-size: 20px;*/
+    /*margin:10px;*/
+    padding-top:5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+
+
+}
+
+footer{
+
+    background-color:#7eac98;
+    text-align: center;
+    padding: 30px;
+
+}
+/* For a Large Screen*/
+@media screen and (max-width: 590px) {
+}
+/* For a Medium Screen*/
+@media screen and (max-width: 790px) {
+}
+/* For a Small Screen*/
+@media screen and (min-width: 791px) {
+}

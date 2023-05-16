@@ -1,0 +1,316 @@
+.mainContainerBox1{
+    background-color: #6B9080;
+    text-align: center;
+    padding: 50px;
+}
+nav{
+    text-align: center;
+    background-color: lightslategray;
+    padding: 20px;
+}
+  
+ul{
+  
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  
+}
+body{
+    background-color: #EAF4F4;
+}
+h1{
+    font-size:50px;
+}
+h2{
+    font-size: 35px;
+}
+button{
+    cursor:pointer;
+}
+a{
+    padding: 10px;
+    color:black;
+}
+a:hover{
+    background-color: rgb(144, 149, 155);
+    
+}
+a:visited{
+    color:white;
+}
+
+a:focus{
+    outline:2px solid rgb(255, 0, 119);
+    color:rgb(255, 0, 119);
+}
+article{
+    background-color:#CCE3DE;
+    box-sizing: border-box;
+    /*font-size: 20px;*/
+    /*margin-bottom: 10px;; */
+    padding: 0px 15px 15px 15px;
+}
+img{
+    /* float:right; */
+    /* width: 150px;
+    height: 150px; */
+    margin: auto;
+    width:100%;
+    height:auto;
+}
+section{
+    background-color:#CCE3DE;
+   /* font-size: 20px;*/
+    /*margin:10px;*/
+    padding-top:5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+}
+figcaption{
+    text-align:center;
+    width:100%;
+}
+footer{
+    background-color:#7eac98;
+    text-align: center;
+    padding: 30px;
+}
+.footerLinks{
+    text-align:center;
+}
+/* For a Small Screen*/
+@media screen and (max-width: 590px) {
+    body{
+        display:flex;
+        flex-direction:column;
+    }
+    article{
+        padding:5px;
+    }
+    .logo{
+        position:absolute;
+        /* right: -1em;
+        top: -0.5em; */
+        top:35px;
+        right:10px;
+        width: 210px;
+        height: 140px;
+    }
+    li{
+        text-align: left;
+    }
+    a{
+        padding:5px;
+    }
+    nav{
+        line-height: 1.25em;
+    }
+    .mainContainerBox0{
+        margin:auto;
+    }
+    .mainContainerBox4{
+        background-color:#CCE3DE
+    }
+    .authorPicture{
+        float:center;
+        /* width: 100px;
+        height: 100px; */
+        width: 100%;
+        height: 100%;
+    }
+    /* dt{
+        text-align: center;
+    } */
+    dd{
+        width:200px;
+        margin:auto;
+    }
+    textarea{
+        width:100%;
+    }
+    .inputLength{
+        width:100%
+    }
+
+
+}
+/* For a Medium Screen*/
+@media screen and (min-width: 590px) 
+{
+main{
+    display: grid;
+}
+.logo{
+    position: absolute;
+    float: right;
+    top: 50px;
+    right: 60px;
+    width: 210px;
+    height: 140px;
+}
+.mainContainer
+{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: repeat(12,180px);
+    gap: 0.5rem;
+}
+.mainContainerBox0
+{
+    grid-column: 1/3;
+    grid-row: 1/2;
+    width: 100%;
+}
+.mainContainerBox1
+{
+    grid-column: 1/3;
+    grid-row: 2/4;
+    
+}
+.mainContainerBox2
+{
+    grid-column: 1/2;
+    grid-row: 4/7;
+    width: auto;
+    height: auto;
+    overflow: auto;
+
+}
+.mainContainerBox3
+{
+    grid-column: 1/2;
+    grid-row: 10/13;
+    overflow: auto;
+
+}   
+
+.mainContainerBox4
+{
+  grid-column: 2/3;
+  grid-row: 7/10;
+  overflow: auto;
+} 
+
+.mainContainerBox5
+{
+    grid-column: 2/3;
+    grid-row: 4/7;
+    overflow: auto;
+}
+.mainContainerBox6
+{
+    grid-column: 1/2;
+    grid-row: 7/10;
+    overflow: auto;
+}
+.mainContainerBox7
+{
+    grid-column: 1/3;
+    grid-row: 13;
+}
+.hideDisplay{
+  display: none;
+}
+.inline{
+    display:inline;
+}
+.logo{
+    width: 270px;
+    height: 180px;
+    position:absolute;
+    right: 1em;
+    top: 0.5em;
+}
+}
+/* For a Large Screen*/
+@media screen and (min-width: 790px) {
+    main{
+        display: grid;
+    }
+    .logo{
+        position: absolute;
+        float: right;
+        top: 50px;
+        right: 60px;
+        width: 210px;
+        height: 140px;
+    }
+    .mainContainer
+    {
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        grid-template-rows: repeat(12,180px);
+        gap: 0.5rem;
+
+        width: min(90%); /*Inspiration of using margin-inline/width from: https://www.youtube.com/watch?v=VsNAuGkCpQU*/
+      margin-inline: auto;
+    }
+    .mainContainerBox0
+    {
+        grid-column: 1/3;
+        grid-row: 1/2;
+        width: 100%;
+    }
+    .mainContainerBox1
+    {
+        grid-column: 1/3;
+        grid-row: 2/4;
+        
+    }
+    .mainContainerBox2
+    {
+        grid-column: 1/2;
+        grid-row: 4/7;
+        width: auto;
+        height: auto;
+        overflow: auto;
+    
+    }
+    .mainContainerBox3
+    {
+        grid-column: 1/2;
+        grid-row: 10/13;
+        overflow: auto;
+    
+    }   
+    
+    .mainContainerBox4
+    {
+      grid-column: 2/3;
+      grid-row: 7/10;
+      overflow: auto;
+    } 
+    
+    .mainContainerBox5
+    {
+        grid-column: 2/3;
+        grid-row: 4/7;
+        overflow: auto;
+    }
+    .mainContainerBox6
+    {
+        grid-column: 1/2;
+        grid-row: 7/10;
+        overflow: auto;
+    }
+    .mainContainerBox7
+    {
+        grid-column: 1/3;
+        grid-row: 13;
+    }
+    .hideDisplay{
+      display: none;
+    }
+    .inline{
+        display:inline;
+    }
+    .logo{
+        width: 270px;
+        height: 180px;
+        position:absolute;
+        right: 1em;
+        top: 0.5em;
+    }
+}

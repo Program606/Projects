@@ -1,0 +1,135 @@
+header{
+
+background-color: #6B9080;
+text-align: center;
+padding: 50px;
+
+}
+
+h1{
+
+  text-align: center;
+  font-size: 45px;
+
+}
+
+h2{
+
+font-size:35px;
+
+}
+
+nav{
+
+  background-color: rgb(131, 221, 191);
+  text-align: center;
+  padding: 35px;
+
+}
+
+a{
+
+  padding: 10px;
+
+}
+
+.navLinks:hover{
+
+  background-color: rgb(170, 221, 204);
+
+}
+
+.inline{ 
+  display:inline; 
+  /* float: center; Makes the block elemets float next to each other */
+}
+
+ul{
+
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+
+}
+
+section{
+
+  background-color:#CCE3DE;
+  width: 65%;
+  padding: 5px;
+
+  }
+
+article{
+
+    background-color:#CCE3DE;
+    padding: 5px;
+    width: 65%
+
+}
+
+body{
+
+    background-color:#EAF4F4;
+
+}
+
+aside {
+  text-align: center;
+  width: 30%;
+  padding-top: 10px;;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 240px;
+
+  margin-top: 0px;
+  
+  float: right;
+  background-color: lightgray;
+  font-size: 18px;
+  
+  /* Don't forget that our padding, font, and marging should be consistent
+  on all 3 pages. You can choose if you want and I could follow you.
+  */
+}
+
+p{
+    color: #000000;
+   
+}
+
+footer{
+    background-color:#7eac98;
+    text-align: center;
+    padding: 30px;
+
+}
+
+.logo{
+
+  position:absolute;
+  right: -1em;
+  top: -0.5em;
+  width: 300px;
+  height: 200px;
+
+}
+
+
+.iconText{
+  /* https://www.w3.org/Style/Examples/007/figures.en.html */
+
+  text-align: center;
+
+}
+/* For a Large Screen*/
+@media screen and (max-width: 590px) {
+}
+/* For a Medium Screen*/
+@media screen and (max-width: 790px) {
+}
+/* For a Small Screen*/
+@media screen and (min-width: 791px) {
+}
+

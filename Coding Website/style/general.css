@@ -1,0 +1,7 @@
+/* This css file is to make sure that all margins, 
+padding, and fonts are consistent across all pages.*/
+*{
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 20px;
+    margin: 15px;
+}
