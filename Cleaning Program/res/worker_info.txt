@@ -1,6 +1,6 @@
-Prince_Manzano;19;40;0;15
-Ronnie_Manzano;62;200;30000;20
-Yna_Manzano;17;90;75000;15
-Vironica_Manzano;56;400;80000;34
-Mojo_Manzano;56;400;90000;15
-Banana_Manzano;56;400;100000;20
+Prince_Manzano;19;40.0;0.0;15.0
+Ronnie_Manzano;62;200.0;30000.0;20.0
+Yna_Manzano;17;90.0;75000.0;15.0
+Vironica_Manzano;56;400.0;80000.0;34.0
+Mojo_Manzano;56;400.0;90000.0;15.0
+Banana_Manzano;56;400.0;100000.0;20.0

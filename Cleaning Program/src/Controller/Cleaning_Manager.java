@@ -17,12 +17,13 @@ public class Cleaning_Manager {
     public String name;
     public int age;
     public float totalHours, totalSalary, wage;
+    public ArrayList<Employee> EmployeeList;
 
 
     /* 
      * Reads the Worker Information to give program information oF Worker Names, Hours, etc.
     */
-    public void loadData() throws IOException{
+    public ArrayList<Employee> loadData() throws IOException{
 
         try {
             //Adding the file location into a file_reader
@@ -32,7 +33,7 @@ public class Cleaning_Manager {
             String line;
 
             //Making an EmployeeList that holds all Employees.
-            ArrayList<Employee> EmployeeList = new ArrayList<Employee>();
+            EmployeeList = new ArrayList<Employee>();
 
             while((line = reader.readLine()) != null){             
                 //Splitting line into tokens to separate data.
@@ -46,8 +47,8 @@ public class Cleaning_Manager {
                 //Creating Employees, using Employee object, using tokenized info.
                 Employee employee = new Employee(name, age, totalHours, totalSalary, wage);
                 EmployeeList.add(employee);
-            }
 
+            }
             for(Employee employee: EmployeeList){
                 System.out.println(employee);
             }
@@ -56,19 +57,25 @@ public class Cleaning_Manager {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return EmployeeList;
     }
 
     public void startProgram() throws IOException{
         loadData();
+
+
+        writeData();
     }
-    
+    /*
+    Overwriting new content to worker info if any
+    */
     public void writeData(){
 
         try{
-            BufferedWriter writer = new BufferedWriter(new FileWriter("res/test.txt"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_INFO));
 
-            for(String item: tokens){
-
+            for(Employee employee: EmployeeList){
+                 writer.write(employee.getName() + ";" + employee.getAge() + ";" + employee.getTotalHours() + ";" + employee.getTotalSalary() + ";" + employee.getWage() + "\n");
             }
             writer.close();
         

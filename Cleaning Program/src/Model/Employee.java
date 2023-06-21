@@ -24,7 +24,7 @@ public class Employee {
         String formatedTotalSalary = formatterTotalSalary.format(totalSalary);
         
         DecimalFormat formattertotalHours = new DecimalFormat("#, ###.0");
-        String formatedTotalHours = formattertotalHours.format(totalSalary);
+        String formatedTotalHours = formattertotalHours.format(totalHours);
 
         String toString = name + " " + age + " " + formatedTotalHours + " " + "$"+ formatedTotalSalary + " " + "$"+ wage  ;
         return toString;
