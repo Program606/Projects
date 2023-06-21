@@ -6,19 +6,22 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import src.Model.Employee;
+import src.View.Visual;
 
 public class Cleaning_Manager {
-
-    final String FILE_INFO = "res/worker_info.txt";
     
+    final String FILE_INFO = "res/worker_info.txt";
     public String tokens[];
     public String name;
     public int age;
     public float totalHours, totalSalary, wage;
     public ArrayList<Employee> EmployeeList;
 
+    Visual viewObject = new Visual();
+    Scanner keyboard = new Scanner(System.in);
 
     /* 
      * Reads the Worker Information to give program information oF Worker Names, Hours, etc.
@@ -49,9 +52,6 @@ public class Cleaning_Manager {
                 EmployeeList.add(employee);
 
             }
-            for(Employee employee: EmployeeList){
-                System.out.println(employee);
-            }
             reader.close();
 
         } catch (IOException e) {
@@ -62,10 +62,51 @@ public class Cleaning_Manager {
 
     public void startProgram() throws IOException{
         loadData();
-
-
+        showMenu();
+        isEnterPressed();
         writeData();
     }
+    
+    /*Shows the inital Menu of the Program*/
+    public void showMenu(){
+        viewObject.showStartMenu();
+        viewObject.showEnterOptionMsg();
+        String menuOption = keyboard.nextLine();
+        char menuOptionChar = menuOption.charAt(0); 
+        
+        switch(menuOptionChar){
+            case '1': 
+                viewObject.showInputData();
+            break;
+
+            case '2':
+            break;
+
+            case '3':
+            break;
+
+            case '4':
+            break;
+        }
+    }
+
+    public void isEnterPressed(){
+        boolean enterPressed = false;
+        viewObject.isEnterPressedMsg();
+
+
+        while(!enterPressed){
+            String userInput = keyboard.nextLine();
+
+        if(userInput.equals("")){
+            enterPressed = true;
+        }
+    }
+    }
+
+
+
+
     /*
     Overwriting new content to worker info if any
     */
