@@ -34,10 +34,22 @@ public class Visual {
     }
     
     public void isEnterPressedMsg(){
+        System.out.println();
         System.out.println("Press Enter to Continue...");
     }
 
     public void showEnterOptionMsg(){
         System.out.println("Please Enter an Option: ");
+    }
+
+    public void emptyOptionMsg(){
+        System.out.println("The option must contain a character.");
+    }
+    public void optionContainsNoNumMsg(){
+        System.out.println("The option must be a number..");
+    }
+
+    public void notAvailableMsg() {
+        System.out.println("Please enter an option that is found in the Menu...");
     }
 }
