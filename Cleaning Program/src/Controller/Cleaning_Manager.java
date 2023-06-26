@@ -23,7 +23,8 @@ public class Cleaning_Manager {
     Visual viewObject = new Visual();
     Scanner keyboard = new Scanner(System.in);
     char TOTAL_OPTIONS = '4';
-
+    String userInput;
+    boolean userConfirm;
     /* 
      * Reads the Worker Information to give program information oF Worker Names, Hours, etc.
     */
@@ -67,54 +68,108 @@ public class Cleaning_Manager {
         isEnterPressed();
         writeData();
     }
-    
-    public char validateOption(){
+    public void addWorker(boolean userConfirm){
+        String name;
+        int monthHours;
+        if(userConfirm){
+            viewObject.enterNameMsg();
+            name = keyboard.nextLine();
+
+            viewObject.enterMonthHoursMsg();
+        }
+    }
+    public char validateMenuOption(){
+
         String userInput;
         char userInputChar = ' ';
         boolean validInput = false;
 
         while(!validInput){
+            
             viewObject.showEnterOptionMsg();
             userInput = keyboard.nextLine();
 
-            if(!userInput.equals("")){
-                userInputChar = userInput.charAt(0);
+            userInputChar = validateUserInput(userInput);
 
-            if(((userInputChar < TOTAL_OPTIONS) || (userInputChar == TOTAL_OPTIONS)) && (Character.isDigit(userInputChar))){
+            if((userInputChar < TOTAL_OPTIONS) || (userInputChar == TOTAL_OPTIONS)){
                 validInput = true;
 
             }else{
-                if(!Character.isDigit(userInputChar)){
-                    viewObject.optionContainsNoNumMsg();
-                }
-                else if((userInputChar > TOTAL_OPTIONS) || userInputChar < 0){
+                if((userInputChar > TOTAL_OPTIONS) || userInputChar < 0){
                     viewObject.notAvailableMsg();
                 }
             }
 
-        }else{
-            viewObject.emptyOptionMsg();
-        }
+        
     }
 
     return userInputChar;
         }
-    /*Shows the inital Menu of the Program*/
+    public char validateUserInput(String userInput){
+
+        char userInputChar = ' ';
+        boolean validInput = false, isNum = false;
+
+        while(!validInput && !isNum){
+
+            if(!userInput.equals("")){
+                userInputChar = userInput.charAt(0);
+
+                if(Character.isDigit(userInputChar)){
+                    isNum = true;
+
+                }else
+
+                    if(!Character.isDigit(userInputChar)){
+                        viewObject.optionNumberMsg();
+
+                        userInput = keyboard.nextLine();
+                    }
+            }else{
+                viewObject.emptyOptionMsg();
+
+                viewObject.showEnterOptionMsg();
+                userInput = keyboard.nextLine();
+            
+            }
+        
+        }
+        return userInputChar;
+    }
+        /*Shows the inital Menu of the Program*/
     public void showMenu(){
         viewObject.showStartMenu();
 
-        char menuOptionChar = validateOption();
+        char menuOptionChar = validateMenuOption();
         switch(menuOptionChar){
             case '1': 
                 isEnterPressed();
                 viewObject.showInputData();
-                
             break;
 
             case '2':
+
             break;
 
             case '3':
+            
+            viewObject.showWorkerMenu();
+            viewObject.showEnterOptionMsg();
+            userInput = keyboard.nextLine();
+            isEnterPressed();
+            switch(userInput){
+                case "1":
+                    viewObject.showViewWorkers(EmployeeList);
+                    break;
+                case "2":
+                    userConfirm = areYouSure();
+                    addWorker(userConfirm);
+
+                    break;
+                case "3":
+                    break;
+            }
+                // viewObject.showViewWorkers(EmployeeList);
             break;
 
             case '4':
@@ -124,19 +179,42 @@ public class Cleaning_Manager {
 
     public void isEnterPressed(){
         boolean enterPressed = false;
-        viewObject.isEnterPressedMsg();
-
+        String userInput = " ";
 
         while(!enterPressed){
-            String userInput = keyboard.nextLine();
+            viewObject.isEnterPressedMsg();
+            userInput = keyboard.nextLine();
 
-        if(userInput.equals("")){
-            enterPressed = true;
+            if(userInput.equals("")){
+                enterPressed = true;
+            }
+            else{
+                viewObject.isEnterPressedMsg();
+            }
         }
     }
+
+    public boolean areYouSure(){
+        boolean validInput = false;
+        
+
+        while(!validInput){
+            viewObject.areYouSureMsg();
+            viewObject.yesOrNoMsg();
+            userInput = keyboard.next();
+
+        if(userInput != null && (userInput.equals("y") || userInput.equals("n"))){
+            validInput = true;
+        }else{
+            viewObject.notAvailableMsg();
+        }
     }
-
-
+    if(userInput.equals("y")){
+        return true;
+    }else{
+        return false;
+    }
+    }
 
 
     /*
