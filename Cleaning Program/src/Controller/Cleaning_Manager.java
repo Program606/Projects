@@ -22,7 +22,7 @@ public class Cleaning_Manager {
 
     Visual viewObject = new Visual();
     Scanner keyboard = new Scanner(System.in);
-    int TOTAL_OPTIONS = 4;
+    char TOTAL_OPTIONS = '4';
 
     /* 
      * Reads the Worker Information to give program information oF Worker Names, Hours, etc.
@@ -74,34 +74,34 @@ public class Cleaning_Manager {
         boolean validInput = false;
 
         while(!validInput){
+            viewObject.showEnterOptionMsg();
             userInput = keyboard.nextLine();
 
             if(!userInput.equals("")){
                 userInputChar = userInput.charAt(0);
 
-                if (Character.isDigit(userInputChar)){
-
-                }else{
-                    viewObject.optionContainsNoNumMsg();
-
-            }if(userInputChar <= TOTAL_OPTIONS){
+            if(((userInputChar < TOTAL_OPTIONS) || (userInputChar == TOTAL_OPTIONS)) && (Character.isDigit(userInputChar))){
                 validInput = true;
-                
-            }else{
-                viewObject.notAvailableMsg();
-            }
-        }
-            else{
-                viewObject.emptyOptionMsg();
-            }
-        }
 
-        return userInputChar;
+            }else{
+                if(!Character.isDigit(userInputChar)){
+                    viewObject.optionContainsNoNumMsg();
+                }
+                else if((userInputChar > TOTAL_OPTIONS) || userInputChar < 0){
+                    viewObject.notAvailableMsg();
+                }
+            }
+
+        }else{
+            viewObject.emptyOptionMsg();
+        }
     }
+
+    return userInputChar;
+        }
     /*Shows the inital Menu of the Program*/
     public void showMenu(){
         viewObject.showStartMenu();
-        viewObject.showEnterOptionMsg();
 
         char menuOptionChar = validateOption();
         switch(menuOptionChar){
