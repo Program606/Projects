@@ -70,12 +70,32 @@ public class Cleaning_Manager {
     }
     public void addWorker(boolean userConfirm){
         String name;
-        int monthHours;
+        int monthPayment, age;
+        float monthHours, totalHours, totalPayment, wage;
+
         if(userConfirm){
             viewObject.enterNameMsg();
             name = keyboard.nextLine();
+            isEnterPressed();
 
-            viewObject.enterMonthHoursMsg();
+            viewObject.enterAgeMsg();
+            age = keyboard.nextInt();
+            isEnterPressed();
+
+            viewObject.enterTotalHoursMsg();
+            totalHours = keyboard.nextFloat();
+            isEnterPressed();
+
+            viewObject.enterTotalPaymentMsg();
+            totalPayment = keyboard.nextFloat();
+            isEnterPressed();
+
+            viewObject.enterWageMsg();
+            wage = keyboard.nextFloat();
+            isEnterPressed();
+
+            Employee employee = new Employee(name, age, totalHours, totalPayment, wage);
+            EmployeeList.add(employee);
         }
     }
     public char validateMenuOption(){
@@ -152,7 +172,7 @@ public class Cleaning_Manager {
             break;
 
             case '3':
-            
+
             viewObject.showWorkerMenu();
             viewObject.showEnterOptionMsg();
             userInput = keyboard.nextLine();
@@ -201,7 +221,7 @@ public class Cleaning_Manager {
         while(!validInput){
             viewObject.areYouSureMsg();
             viewObject.yesOrNoMsg();
-            userInput = keyboard.next();
+            userInput = keyboard.nextLine();
 
         if(userInput != null && (userInput.equals("y") || userInput.equals("n"))){
             validInput = true;

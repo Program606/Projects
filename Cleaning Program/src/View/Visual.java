@@ -1,6 +1,5 @@
 package src.View;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import src.Model.Employee;
@@ -34,12 +33,16 @@ public class Visual {
         System.out.printf("| %-48s| %n" , "");
         System.out.println("+-------------------------------------------------+");
     }
-    public void showAddWorker(){
+    public void showAddWorkerMsg(){
 
         System.out.println("To Add a Worker Please Enter the Following Inputs..");
     }
     public void enterNameMsg(){
+        
        System.out.print("Please Enter a Name:" +"\n"); 
+    }
+    public void enterAgeMsg(){
+        System.out.println("Please Enter an Age");
     }
     public void enterMonthHoursMsg(){
     }
@@ -47,12 +50,14 @@ public class Visual {
         
     }
     public void enterTotalHoursMsg(){
-    
+        System.out.println("Please Enter Total Hours Workerd: ");
     }
     public void enterTotalPaymentMsg(){
-    
+        System.out.println("Please Enter Previous Hours Worked: ");
     }
-    public void enterWageMsg(){}
+    public void enterWageMsg(){
+        System.out.println("Please Enter Wage per Hour: ");
+    }
     public void showRemoveWorker(){
 
     }

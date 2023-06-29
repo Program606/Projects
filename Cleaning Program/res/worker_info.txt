@@ -4,3 +4,4 @@ Yna_Manzano;17;90.0;75000.0;15.0
 Vironica_Manzano;56;400.0;80000.0;34.0
 Mojo_Manzano;56;400.0;90000.0;15.0
 Banana_Manzano;56;400.0;100000.0;20.0
+
