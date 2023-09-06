@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import src.Model.Employee;
+import src.View.ExceptionView;
 import src.View.Visual;
 
 public class Cleaning_Manager {
@@ -21,10 +22,11 @@ public class Cleaning_Manager {
     public ArrayList<Employee> EmployeeList;
 
     Visual viewObject = new Visual();
+    ExceptionView viewException = new ExceptionView();
     Scanner keyboard = new Scanner(System.in);
     char TOTAL_OPTIONS = '4';
     String userInput;
-    boolean userConfirm;
+    boolean userConfirm, validInput = false;
     /* 
      * Reads the Worker Information to give program information oF Worker Names, Hours, etc.
     */
@@ -65,48 +67,54 @@ public class Cleaning_Manager {
     public void startProgram() throws IOException{
         loadData();
         showMenu();
-        isEnterPressed();
         writeData();
     }
     public void addWorker(boolean userConfirm){
         String name;
-        int monthPayment, age;
-        float monthHours, totalHours, totalPayment, wage;
+        int age = 0;
+        float totalHours, totalPayment, wage;
 
         if(userConfirm){
             viewObject.enterNameMsg();
-            name = keyboard.nextLine();
+            name = keyboard.next();
+            clearNewLine();
             isEnterPressed();
 
-            viewObject.enterAgeMsg();
-            age = keyboard.nextInt();
+            age = checkAge();
+            clearNewLine();
             isEnterPressed();
 
             viewObject.enterTotalHoursMsg();
             totalHours = keyboard.nextFloat();
+            clearNewLine();
             isEnterPressed();
 
             viewObject.enterTotalPaymentMsg();
             totalPayment = keyboard.nextFloat();
+            clearNewLine();
             isEnterPressed();
 
             viewObject.enterWageMsg();
             wage = keyboard.nextFloat();
+            clearNewLine();
             isEnterPressed();
-
+            
+            viewObject.showAddingEmployeeMsg();
             Employee employee = new Employee(name, age, totalHours, totalPayment, wage);
             EmployeeList.add(employee);
+            showMenu();
+        }else{
+            showMenu();
         }
     }
     public char validateMenuOption(){
 
         String userInput;
         char userInputChar = ' ';
-        boolean validInput = false;
 
         while(!validInput){
             
-            viewObject.showEnterOptionMsg();
+            viewException.showEnterOptionMsg();
             userInput = keyboard.nextLine();
 
             userInputChar = validateUserInput(userInput);
@@ -116,7 +124,7 @@ public class Cleaning_Manager {
 
             }else{
                 if((userInputChar > TOTAL_OPTIONS) || userInputChar < 0){
-                    viewObject.notAvailableMsg();
+                    viewException.notAvailableMsg();
                 }
             }
 
@@ -128,7 +136,7 @@ public class Cleaning_Manager {
     public char validateUserInput(String userInput){
 
         char userInputChar = ' ';
-        boolean validInput = false, isNum = false;
+        boolean isNum = false;
 
         while(!validInput && !isNum){
 
@@ -141,14 +149,14 @@ public class Cleaning_Manager {
                 }else
 
                     if(!Character.isDigit(userInputChar)){
-                        viewObject.optionNumberMsg();
+                        viewException.optionNumberMsg();
 
                         userInput = keyboard.nextLine();
                     }
             }else{
-                viewObject.emptyOptionMsg();
+                viewException.emptyOptionMsg();
 
-                viewObject.showEnterOptionMsg();
+                viewException.showEnterOptionMsg();
                 userInput = keyboard.nextLine();
             
             }
@@ -174,7 +182,7 @@ public class Cleaning_Manager {
             case '3':
 
             viewObject.showWorkerMenu();
-            viewObject.showEnterOptionMsg();
+            viewException.showEnterOptionMsg();
             userInput = keyboard.nextLine();
             isEnterPressed();
             switch(userInput){
@@ -184,12 +192,12 @@ public class Cleaning_Manager {
                 case "2":
                     userConfirm = areYouSure();
                     addWorker(userConfirm);
+                    writeData();
 
                     break;
                 case "3":
                     break;
             }
-                // viewObject.showViewWorkers(EmployeeList);
             break;
 
             case '4':
@@ -197,45 +205,64 @@ public class Cleaning_Manager {
         }
     }
 
+    public int checkAge(){
+        boolean ageValid = false;
+
+        while(!ageValid){
+
+                viewObject.enterAgeMsg();
+
+                try{
+                    age = keyboard.nextInt();
+                    ageValid = true;
+                }
+                catch(java.util.InputMismatchException e){
+                    viewException.mustIntMsg();
+                }
+            }
+
+        return age;
+    }
+
     public void isEnterPressed(){
         boolean enterPressed = false;
         String userInput = " ";
-
+        
         while(!enterPressed){
-            viewObject.isEnterPressedMsg();
+            viewException.isEnterPressedMsg();
             userInput = keyboard.nextLine();
 
             if(userInput.equals("")){
                 enterPressed = true;
             }
             else{
-                viewObject.isEnterPressedMsg();
+                viewException.isEnterPressedMsg();
             }
         }
     }
-
     public boolean areYouSure(){
-        boolean validInput = false;
-        
 
-        while(!validInput){
+        while(validInput){
             viewObject.areYouSureMsg();
             viewObject.yesOrNoMsg();
             userInput = keyboard.nextLine();
 
         if(userInput != null && (userInput.equals("y") || userInput.equals("n"))){
-            validInput = true;
+            validInput = false;
         }else{
-            viewObject.notAvailableMsg();
+            viewException.notAvailableMsg();
         }
     }
+
     if(userInput.equals("y")){
         return true;
     }else{
         return false;
     }
     }
-
+    public void clearNewLine(){
+        keyboard.nextLine(); //Clears any /n bc String scanner
+    }
 
     /*
     Overwriting new content to worker info if any

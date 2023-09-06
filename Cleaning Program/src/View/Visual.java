@@ -38,11 +38,11 @@ public class Visual {
         System.out.println("To Add a Worker Please Enter the Following Inputs..");
     }
     public void enterNameMsg(){
-        
-       System.out.print("Please Enter a Name:" +"\n"); 
+        System.out.println();
+       System.out.print("Please Enter a Name:" ); 
     }
     public void enterAgeMsg(){
-        System.out.println("Please Enter an Age");
+        System.out.print("Please Enter an Age: ");
     }
     public void enterMonthHoursMsg(){
     }
@@ -50,13 +50,13 @@ public class Visual {
         
     }
     public void enterTotalHoursMsg(){
-        System.out.println("Please Enter Total Hours Workerd: ");
+        System.out.print("Please Enter Total Hours Worked: ");
     }
     public void enterTotalPaymentMsg(){
-        System.out.println("Please Enter Previous Hours Worked: ");
+        System.out.print("Please Enter Previous Hours Worked: ");
     }
     public void enterWageMsg(){
-        System.out.println("Please Enter Wage per Hour: ");
+        System.out.print("Please Enter Wage per Hour: ");
     }
     public void showRemoveWorker(){
 
@@ -98,29 +98,10 @@ public class Visual {
         System.out.println("Are you sure you want to continue?");
     }
     public void yesOrNoMsg(){
-            System.out.print("Please enter (y/n): " + "\n");
+            System.out.print("Please enter (y/n): ");
     }
 
-    public void isEnterPressedMsg(){
-        System.out.println();
-        System.out.println("Press Enter to Continue...");
-        System.out.println();
-    }
-    public void showEnterOptionMsg(){
-        System.out.println("Please Enter an Option: ");
-    }
-    public void emptyOptionMsg(){
-        System.out.println("The option must contain a character.");
-    }
-    public void optionContainsNoNumMsg(){
-        System.out.println("The option must be a number..");
-    }
-    public void notAvailableMsg() {
-        System.out.println("Option is not available in Menu...");
-    }
-    public void optionNumberMsg(){
-        System.out.println("Input must be a numeral..");
-        System.out.println();
-        System.out.println("Please enter a numeral");
+    public void showAddingEmployeeMsg() {
+        System.out.println("Now Adding Worker.. Please Wait... "+ "\n");
     }
 }
