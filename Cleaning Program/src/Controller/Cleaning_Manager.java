@@ -134,7 +134,7 @@ public class Cleaning_Manager {
     return userInputChar;
         }
     public char validateUserInput(String userInput){
-
+        
         char userInputChar = ' ';
         boolean isNum = false;
 
@@ -150,7 +150,6 @@ public class Cleaning_Manager {
 
                     if(!Character.isDigit(userInputChar)){
                         viewException.optionNumberMsg();
-
                         userInput = keyboard.nextLine();
                     }
             }else{
@@ -165,7 +164,8 @@ public class Cleaning_Manager {
         return userInputChar;
     }
         /*Shows the inital Menu of the Program*/
-    public void showMenu(){
+    
+        public void showMenu(){
         viewObject.showStartMenu();
 
         char menuOptionChar = validateMenuOption();
@@ -188,14 +188,20 @@ public class Cleaning_Manager {
             switch(userInput){
                 case "1":
                     viewObject.showViewWorkers(EmployeeList);
+                    isEnterPressed();
+                    //Go back to Start Menu
                     break;
                 case "2":
                     userConfirm = areYouSure();
                     addWorker(userConfirm);
                     writeData();
-
                     break;
                 case "3":
+                    userConfirm = areYouSure();
+                    removeWorker(userConfirm);
+                    writeData();
+                    clearNewLine();
+                    showMenu();
                     break;
             }
             break;
@@ -203,6 +209,22 @@ public class Cleaning_Manager {
             case '4':
             break;
         }
+    }
+
+    private void removeWorker(boolean userConfirm2) {
+        int count = 0;
+        viewObject.showViewWorkers(EmployeeList);
+        viewObject.showRemoveWorkerMsg();
+        String workerNum = keyboard.next();
+        char workerNumChar = validateUserInput(workerNum);
+        // int workerNumInt = workerNumChar.parseInt(workerNumChar);
+        for(Employee worker: EmployeeList){
+            if(count == workerNumChar){
+                EmployeeList.remove(worker);
+            }
+            count++;
+        }
+
     }
 
     public int checkAge(){

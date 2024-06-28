@@ -34,8 +34,12 @@ public class Visual {
         System.out.println("+-------------------------------------------------+");
     }
     public void showAddWorkerMsg(){
-
         System.out.println("To Add a Worker Please Enter the Following Inputs..");
+    }
+    public void showRemoveWorkerMsg(){
+        System.out.println();
+        System.out.println("To Remove a Worker Please Enter the Number that Corresponds with the Worker..");
+        System.out.println();
     }
     public void enterNameMsg(){
         System.out.println();
@@ -58,11 +62,9 @@ public class Visual {
     public void enterWageMsg(){
         System.out.print("Please Enter Wage per Hour: ");
     }
-    public void showRemoveWorker(){
-
-    }
     
     public void showViewWorkers(ArrayList<Employee> employeeList){
+        int count = 1;
         String title1 = "Workers", 
                title2 = "Month Hours", 
                title3 = "Month Payment", 
@@ -76,8 +78,9 @@ public class Visual {
 
         for(Employee employee: employeeList){
             System.out.printf("| %-20s | %-20s | %-20s | %-20s | %-20s | %-4s | %n", 
-            employee.getName(), "Monthly Hours $", "Monthly Payment", employee.getTotalHours(), employee.getTotalHours()
+            count + ") "+ employee.getName(), "Monthly Hours $", "Monthly Payment", employee.getTotalHours(), employee.getTotalHours()
             ,employee.getWage());
+            count++;
         
             System.out.println("+-------------------------------------------------------------------------------------------------------------------------+");
         }
