@@ -20,6 +20,9 @@ import view.View;
 public class FinanceApplication<T> {
 	/**
 	 * Features to Implement in Future
+	 * RunAndWait
+	 * RFID
+	 * NueralPepperOS 
 	 * 
 	 * Remove an existing Member (done)
 	 * 		- Shows a list of members who have not attended that particular day
@@ -223,6 +226,7 @@ private void addMemberMenu() {
 	
 	createMember(firstName, middleName, lastName, present = true, areaGroup, age, 
 			CFO, office,nationality, bloodType);
+			
 }
 private void removeMethodsMenu(int locator) {
 	boolean notFound = true;

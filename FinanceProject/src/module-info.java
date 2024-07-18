@@ -5,4 +5,5 @@
  * 
  */
 module FinanceProject {
+	requires poi;
 }
