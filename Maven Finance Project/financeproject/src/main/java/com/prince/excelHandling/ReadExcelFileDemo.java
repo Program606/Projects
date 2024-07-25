@@ -33,25 +33,17 @@ static Row r = null;
 static Cell c = null;
 
 public static void test() throws IOException{
-FileOutputStream out = new FileOutputStream("workbook.xls");
-createForm_1503(out);
-cleanup(out);
+createForm_1503();
 }
-public static void createForm_1503(FileOutputStream out) throws IOException{
+
+public static void createForm_1503() throws IOException{
+FileOutputStream out = new FileOutputStream("workbook.xls");
 
 short rownum;
-
-
 for (rownum = (short) 0; rownum < 30; rownum++) //create 30 rows
 {
-    // create a row
+
     r = s.createRow(rownum);
-    // on every other row
-    // if ((rownum % 2) == 0)
-    // {
-    //     // make the row height bigger  (in twips - 1/20 of a point)
-    //     r.setHeight((short) 0x250);
-    // }
 
     for (short cellnum = (short) 0; cellnum < 9; cellnum++) //create 9 cells
     {
@@ -92,6 +84,7 @@ wb.removeSheetAt(1);
 // write the workbook to the output stream
 wb.write(out);
 }
+cleanup(out);
 
     // // create 3 cell styles
     // CellStyle cs = wb.createCellStyle();
