@@ -4,126 +4,201 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 
 import javax.swing.GroupLayout.Alignment;
 
 import org.apache.poi.hssf.usermodel.HSSFDataFormat;
-import org.apache.poi.hssf.usermodel.HSSFSheet;  
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.xssf.usermodel.XSSFSheet;  
 import org.apache.poi.xssf.model.StylesTable;
+import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.CreationHelper;
 import org.apache.poi.ss.usermodel.DataFormat;
 import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.FormulaEvaluator;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook; 
+import org.apache.poi.ss.usermodel.VerticalAlignment;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.util.CellRangeAddress; 
 
 public class ReadExcelFileDemo   {
 // create a new workbook
-static Workbook wb = new HSSFWorkbook();
+static Workbook wb = new XSSFWorkbook();
 // create a new sheet
-static Sheet s = wb.createSheet();
-// declare a row object reference
-static Row r = null;
-// declare a cell object reference
-static Cell c = null;
 
 public static void test() throws IOException{
-createForm_1503();
+createForm_1503New();
 }
+private static void createForm_1503New() throws IOException {
+CreationHelper createHelper = wb.getCreationHelper();
+FileOutputStream out = new FileOutputStream("workbook.xlsx");
+Sheet s = wb.createSheet("First Sheet");
+Row r = null;
+Cell c = null;
 
-public static void createForm_1503() throws IOException{
-FileOutputStream out = new FileOutputStream("workbook.xls");
-
-short rownum;
-for (rownum = (short) 0; rownum < 30; rownum++) //create 30 rows
-{
-
-    r = s.createRow(rownum);
-
-    for (short cellnum = (short) 0; cellnum < 9; cellnum++) //create 9 cells
-    {
-        c = r.createCell(cellnum);
-
-        if(rownum == 0 && (cellnum == 0 || cellnum == 1)){
-            s.setColumnWidth(cellnum, 20 * 256);
-            r.setHeight( (short) 0x350);
-            c.setCellValue("Testing");
-
-            CellStyle cellStyle = c.getCellStyle();
-            cellStyle.setAlignment(CellStyle.ALIGN_CENTER);
-            cellStyle.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
+for(int rowCount=0; rowCount < 3; rowCount++){ //create 3 rows
+    r = s.createRow(rowCount);
+    for(int cellCount =0; cellCount < 34; cellCount++){ //create 34 cells
+        Cell currCell = createCell(wb, r, cellCount, 0);
+        switch (rowCount) {
+            case 0://creating subheader
+                if(rowCount == 0){
+                    switch (cellCount) {
+                        case 0:
+                            s.addMergedRegion(new CellRangeAddress(0,0,0,2));
+                            currCell.setCellValue("Records Form");
+                            break;
+                        case 1:
+                            s.addMergedRegion(new CellRangeAddress(0,0,3,30));
+                            break;
+                        case 31:
+                            currCell.setCellValue("YEAR");
+                            break;
+                        case 32:
+                            currCell.setCellValue("AREA");
+                            break;
+                        case 33:
+                            currCell.setCellValue("GROUP");
+                            break;
+                        default:
+                            r.setHeight((short) 0x100);
+                            break;
+                    }
+            }
+                break;
+            case 1://creating title
+            switch (cellCount) {
+                case 0:
+                    s.addMergedRegion(new CellRangeAddress(1,1,0,3));
+                    currCell.setCellValue("R1-05");
+                    break;
+                case 4:
+                    s.addMergedRegion(new CellRangeAddress(1,1,4,24));
+                    currCell.setCellValue("WORSHIP SERVICE ATTENDANCE RECORD");
+                    break;
+                case 25:
+                    s.addMergedRegion(new CellRangeAddress(1,1,25,27));
+                    currCell.setCellValue("WEEK NO:");
+                    break;
+                case 28:
+                    currCell.setCellValue("1");
+                    break;
+                case 29:
+                    currCell.setCellValue("TO");
+                    break;
+                case 30:
+                    currCell.setCellValue("30");
+                    break;
+                case 31:
+                    currCell.setCellValue(2024);
+                    break;
+                case 32:
+                    currCell.setCellValue("1");
+                    break;
+                case 33:
+                    currCell.setCellValue("1");
+                    break;
+                default:
+                    r.setHeight((short) 0x500);
+                    break;
+            }
+                break;
+            case 2://creating header
+                switch (cellCount) {
+                    case 0:
+                        s.setColumnWidth(cellCount, 6 * 256);
+                        r.setHeight( (short) 0x350);
+                        s.addMergedRegion(new CellRangeAddress(2, 4, 0, 0));
+                        currCell.setCellValue("NO");
+                        break;
+                    case 1:
+                        s.setColumnWidth(cellCount, 40 * 256);
+                        r.setHeight( (short) 0x350);
+                        s.addMergedRegion(new CellRangeAddress(2, 4, 1, 1));
+                        currCell.setCellValue("Name");
+                        break;
+                    case 2:
+                        s.setColumnWidth(cellCount, 5 * 256);
+                        r.setHeight( (short) 0x350);
+                        s.addMergedRegion(new CellRangeAddress(2, 4, 2, 2));
+                        currCell.setCellValue("CFO");
+                        break;
+                    case 3:
+                        r.setHeight( (short) 0x125);
+                        s.setColumnWidth(cellCount, 9 * 256);
+                        currCell.setCellValue("Month");
+                        break;
+                    case 4:
+                        s.addMergedRegion(new CellRangeAddress(2, 2, 4, 7));
+                        break;
+                    case 5:
+                        s.addMergedRegion(new CellRangeAddress(2, 2, 8, 11));
+                        break;
+                    case 6:
+                        s.addMergedRegion(new CellRangeAddress(2, 2, 12, 15));    
+                        break;
+                    case 7:
+                        s.addMergedRegion(new CellRangeAddress(2, 2, 16, 19)); 
+                        break;
+                    case 8:
+                        s.addMergedRegion(new CellRangeAddress(2, 2, 20, 23)); 
+                        break;
+                    case 9:
+                        s.addMergedRegion(new CellRangeAddress(2, 2, 24, 27)); 
+                        break;
+                    case 10:
+                        s.addMergedRegion(new CellRangeAddress(2, 2, 28, 31)); 
+                        break;
+                    case 11:
+                        s.addMergedRegion(new CellRangeAddress(2, 2, 32, 33)); 
+                        break;
+                    default:
+                        break;
+            }
+        
+        //creating header
+        
+            }
         }
-        else if(rownum == 0 && (cellnum == 3)){
-            
-        }
-        else{
-        // do some goofy math to demonstrate decimals
-        c.setCellValue(rownum * 10000 + cellnum
-                + (((double) rownum / 1000)
-                + ((double) cellnum / 10000)));
-        String cellValue;
-        // create a string cell (see why += 2 in the
-        c = r.createCell((short) (cellnum + 1));
-        // make this column a bit wider
-        // s.setColumnWidth((short) (cellnum + 1), (short) ((50 * 8) / ((double) 1 / 20)));
     }
-    }
-
-//end draw thick black border
-// demonstrate adding/naming and deleting a sheet
-// create a sheet, set its title then delete it
-s = wb.createSheet();
-wb.setSheetName(1, "DeletedSheet");
-wb.removeSheetAt(1);
-//end deleted sheet
-// write the workbook to the output stream
-wb.write(out);
+    wb.write(out);
 }
-cleanup(out);
+public static CellStyle returnCellStyle(int identifier){
+    /*
+     * 0 : Num Header
+     * 1 : Name Header
+     * 2 : CFO Header
+     * 3 : Month/Week Num Header
+     * 4 : ID Number Header
+     * 5 : 
+     */
+    CellStyle cellStyle = wb.createCellStyle();
+    switch (identifier) {
+        
+        //Center/Justify Center
+        case 0: 
+            cellStyle.setAlignment(HorizontalAlignment.CENTER);
+            cellStyle.setVerticalAlignment(VerticalAlignment.CENTER);
+            break;
+        case 1:
+            break;
+        default:
+            break;
+    }
+    return cellStyle;
 
-    // // create 3 cell styles
-    // CellStyle cs = wb.createCellStyle();
-    // CellStyle cs2 = wb.createCellStyle();
-    // CellStyle cs3 = wb.createCellStyle();
-    // DataFormat df = wb.createDataFormat();
-    // // create 2 fonts objects
-    // Font f = wb.createFont();
-    // Font f2 = wb.createFont();
-    // //set font 1 to 12 point type
-    // f.setFontHeightInPoints((short) 12);
-    // //make it blue
-    // f.setColor( (short)0xc );
-    // // make it bold
-    // //arial is the default font
-    // f.setBoldweight(Font.BOLDWEIGHT_BOLD);
-    // //set font 2 to 10 point type
-    // f2.setFontHeightInPoints((short) 10);
-    // //make it red
-    // f2.setColor( (short)Font.COLOR_RED );
-    // //make it bold
-    // f2.setBoldweight(Font.BOLDWEIGHT_BOLD);
-    // f2.setStrikeout( true );
-    // //set cell stlye
-    // cs.setFont(f);
-    // //set the cell format
-    // cs.setDataFormat(df.getFormat("#,##0.0"));
-    // //set a thin border
-    // cs2.setBorderBottom(cs2.BORDER_THIN);
-    // //fill w fg fill color
-    // cs2.setFillPattern((short) CellStyle.SOLID_FOREGROUND);
-    // //set the cell format to text see DataFormat for a full list
-    // cs2.setDataFormat(HSSFDataFormat.getBuiltinFormat("text"));
-    // // set the font
-    // cs2.setFont(f2);
-
-    // // set the sheet name in Unicode
-    // wb.setSheetName(0, "\u0422\u0435\u0441\u0442\u043E\u0432\u0430\u044F " +
-    //                 "\u0421\u0442\u0440\u0430\u043D\u0438\u0447\u043A\u0430" );
+}
+private static Cell createCell(Workbook wb, Row row, int column, int identifier) {
+    Cell cell = row.createCell(column);
+    cell.setCellValue("X");
+    cell.setCellStyle(returnCellStyle(identifier));
+    return cell;
 }
 public static void cleanup(FileOutputStream out) throws IOException{
     out.close();
