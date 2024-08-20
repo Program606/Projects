@@ -10,9 +10,12 @@ import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.InputMismatchException;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+import com.prince.excelHandling.ExcelFile;
 import com.prince.view.*;
 /*
  * Search up a specific member if they are presnt
@@ -67,11 +70,12 @@ public class FinanceApplication<T> {
 	Calendar c = Calendar.getInstance();
 	
 public void run() throws IOException {
-	// showCalendar();
+// showCalendar();
 loadData();
 createAlternateOrderBST();
 showMainMenu();
 saveData();
+ExcelFile.test(memberList);
 }
 
 //Main Methods
@@ -82,17 +86,17 @@ public void loadData() throws IOException {
 	while((readLine = reader.readLine()) != null) {
 		Scanner member = new Scanner(readLine);
 		member.useDelimiter(";");
-		firstName = member.next();
-		middleName = member.next();
-		lastName = member.next();
-		present = member.nextBoolean();
-		areaGroup = member.next();
-		age = member.nextInt();
-		CFO = member.next();
-		office = member.next();
-		nationality = member.next();
-		bloodType = member.next();
-		
+	
+			firstName = member.next();
+			middleName = member.next();
+			lastName = member.next();
+			present = member.nextBoolean();
+			areaGroup = member.next();
+			age = member.nextInt();
+			CFO = member.next();
+			office = member.next();
+			nationality = member.next();
+			bloodType = member.next(); //Error if member has no bloodType
 		
 		createMember(firstName, middleName, lastName, present, areaGroup, age, 
 				CFO, office, nationality, bloodType);
@@ -209,14 +213,28 @@ private void addMemberMenu() {
 	areaGroup = keyboard.nextLine();
 	
 	v.showUserInputAge();
-	age = keyboard.nextInt();
+	try {
+		age = keyboard.nextInt();
+	}  catch (InputMismatchException ime) {
+		System.out.println("InputMismatchException");
+	}catch(NoSuchElementException nse){
+		System.out.println("NoSuchElementException");
+	}
+
+
 	keyboard.nextLine();
 	
 	v.showUserInputCFO();
 	CFO = keyboard.nextLine();
 	
 	v.showUserInputOffice();
-	office = keyboard.nextLine();
+	try {
+		office = keyboard.nextLine();
+	}  catch (InputMismatchException ime) {
+		System.out.println("InputMismatchException");
+	}catch(NoSuchElementException nse){
+		System.out.println("NoSuchElementException");
+	}
 	
 	v.showUserInputNationality();
 	nationality = keyboard.nextLine();

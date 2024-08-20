@@ -1,5 +1,5 @@
-Prince;Rover;Manzano;false;1-3;20;KAD;CWS;FIL;O-
-Yna;Mae Joy Manzano; Manzano;false;1-3;18;KAD;Choir;FIL;A+
-Ronnie;"";Manzano;false;1-3;60;KAD;Deacon;FIL;B-
-Veronica;"";Manzano;false;1-3;53;KAD;Deaconess;FIL;AB+
-Johnson;"";Lambida;true;2-6;42;Kadiwa;None;FIL;O-
+Prince;Rover;Manzano;false;1-3;20;K;CWS;FIL;O-
+Yna;Mae Joy; Manzano;false;1-3;18;b;Choir;FIL;A+
+Ronnie;"";Manzano;false;1-3;60;B;Deacon;FIL;B-
+Veronica;"";Manzano;false;1-3;53;B;Deaconess;FIL;AB+
+Johnson;"";Lambida;true;2-6;42;B;None;FIL;O-
